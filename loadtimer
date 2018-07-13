@@ -5,7 +5,7 @@ firefox -new-instance -headless -screenshot -purgecaches -private $1 2>&1 1>/dev
 END=$(date +%s%N)
 TIME=$(echo "($END - $START) / 1000000" | bc)
 
-echo "Time: $TIME"
+echo "Time: $TIME ms"
 
 THRESHOLD=5000
 if [[ $2 ]]
