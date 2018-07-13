@@ -1,0 +1,21 @@
+#!/bin/bash
+
+START=$(date +%s%N)
+firefox -new-instance -headless -screenshot -purgecaches -private $1 2>&1 1>/dev/null
+END=$(date +%s%N)
+TIME=$(echo "($END - $START) / 1000000" | bc)
+
+echo "Time: $TIME"
+
+THRESHOLD=5000
+if [[ $2 ]]
+then
+THRESHOLD=$2
+fi
+
+if [ "$TIME" -gt "$THRESHOLD" ]
+then
+exit 1
+fi
+
+exit 0
